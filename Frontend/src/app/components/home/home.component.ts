@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit{
     
     this.productServices.getAllProducts(3).subscribe((prods: serverResponse ) =>{
       this.products = prods.Products;
-      console.log(this.products);
+      console.log(this.products.toString);
     })
     
     

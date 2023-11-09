@@ -4,6 +4,8 @@ const {database} = require('../config/helpers');
 
 /* Obtener todas las ordenes */
 
+
+
 router.get('/', (req, res)=>{
 
 database.table('detalles_orden as od')
