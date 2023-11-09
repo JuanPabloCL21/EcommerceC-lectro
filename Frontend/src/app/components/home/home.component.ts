@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProductoModelServer, serverResponse } from 'src/app/models/productos.model';
 import { ProductService } from 'src/app/services/product.service';
+
 
 @Component({
   selector: 'app-home',
@@ -8,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HomeComponent implements OnInit{
   
-  products: any[] = [];
+  products: ProductoModelServer[] = [];
 
   constructor(private productServices: ProductService){
 
@@ -18,10 +21,11 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     
-    this.productServices.getAllProducts().subscribe((prods: ) => {
-      this.products = prods.products;
+    this.productServices.getAllProducts(3).subscribe((prods: serverResponse ) =>{
+      this.products = prods.Products;
       console.log(this.products);
     })
+    
     
   }
 }
