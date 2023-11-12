@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductoModelServer, serverResponse } from 'src/app/models/productos.model';
 import { ProductService } from 'src/app/services/product.service';
+import { Producto, serverResponse } from 'src/app/models/productos.model';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HomeComponent implements OnInit{
   
-  products: ProductoModelServer[] = [];
+  productos: Producto[] = [];
 
   constructor(private productServices: ProductService){
 
@@ -21,11 +21,19 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     
-    this.productServices.getAllProducts(3).subscribe((prods: serverResponse ) =>{
-      this.products = prods.Products;
-      console.log(this.products.toString);
-    })
-    
+   
+    this.cargarProductos();
     
   }
+
+  cargarProductos(): void {
+    this.productServices.getAllProducts().subscribe((prods: serverResponse) => {
+      this.productos = prods.productos;
+      console.log(this.productos);
+    })
+  }
+
 }
+
+
+
