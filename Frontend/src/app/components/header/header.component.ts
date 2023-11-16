@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  email = "clectrosrv@gmail.com";
+
 }

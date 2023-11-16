@@ -32,7 +32,8 @@ database.table('productos as p')
 'p.precio',
 'p.cantidad',
 'p.imagen',
-'p.id'
+'p.id',
+'p.descripcion'
 ])
 .slice(startValue, endValue)
 .sort({id: .1})

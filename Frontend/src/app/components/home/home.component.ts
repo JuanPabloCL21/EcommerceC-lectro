@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 import { Producto, serverResponse } from 'src/app/models/productos.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit{
   
   productos: Producto[] = [];
 
-  constructor(private productServices: ProductService){
+  constructor(private productServices: ProductService, private router: Router){
 
   }
 
@@ -27,10 +28,14 @@ export class HomeComponent implements OnInit{
   }
 
   cargarProductos(): void {
-    this.productServices.getAllProducts().subscribe((prods: serverResponse) => {
+    this.productServices.getAllProducts(8).subscribe((prods: serverResponse) => {
       this.productos = prods.productos;
       console.log(this.productos);
     })
+  }
+
+  selectProduct(id: Number) {
+    this.router.navigate(['/producto', id]).then;
   }
 
 }

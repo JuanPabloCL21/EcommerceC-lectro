@@ -1,11 +1,11 @@
 export interface Producto{
-    id: Number;
-    nombre: String;
-    descripcion: String;
-    imagen: String;
-    precio: Number;
-    cantidad: Number;
-    imagenes: String;
+    id: number;
+    nombre: string;
+    descripcion: string;
+    imagen: string;
+    precio: number;
+    cantidad: number;
+    imagenes: string;
 
 }
 

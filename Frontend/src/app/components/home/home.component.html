@@ -11,8 +11,8 @@
               <img src="./../../../assets/img/shop01.png" alt="">
             </div>
             <div class="shop-body">
-              <h3>Laptop<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              <h3>Laptop´s</h3>
+              <a href="#" class="cta-btn">Comprar Ahora<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -25,8 +25,8 @@
               <img src="./../../../assets/img/shop03.png" alt="">
             </div>
             <div class="shop-body">
-              <h3>Accessories<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              <h3>Accesorios</h3>
+              <a href="#" class="cta-btn">Comprar AHora<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -39,8 +39,8 @@
               <img src="./../../../assets/img/shop02.png" alt="">
             </div>
             <div class="shop-body">
-              <h3>Cameras<br>Collection</h3>
-              <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              <h3>Camaras</h3>
+              <a href="#" class="cta-btn">Comprar Ahora<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
         <!-- section title -->
         <div class="col-md-12">
           <div class="section-title">
-            <h3 class="title">New Products</h3>
+            <h3 class="title">Nuevos Productos</h3>
           </div>
         </div>
         <!-- /section title -->
@@ -72,21 +72,26 @@
           <div class="row">
             <div class="col-md-4 col-sm-6" *ngFor="let p of productos">
               <div class="card my-2">
-                <img [src]="p.imagen" alt="{{p.nombre}}" width="200px" class="card-img-top" style="cursor: pointer;">
+                <img [src]="p.imagen" alt="{{p.nombre}}" width="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
                 
                 <div class="card-header">
                   <div class="card-title">
-                    <p>{{p.nombre}}</p>
+                    <p>{{p.nombre | titlecase}} </p>
                   </div>
                 </div>
                 <div class="card-body">
-                  <h6>....</h6>
-                  <p class="lead"></p>
+                  <h6>{{p.descripcion.substr(0,25)}}</h6>
+                  <p class="lead">{{p.precio | currency: 'MXN'}}</p>
                 </div>
   
                 <div class="row d-flex justify-content-center border-primary my-3">
                   <div class="col-md-6 ">
-                    <button class="btn btn-outline-primary btn-sm btn-block"></button>
+                    <button class="btn btn-outline-primary btn-sm btn-block"
+                          [class.disabled]="p.cantidad < 1"
+                          [class.btn-outline-danger]="p.cantidad < 1"
+                          >
+                    {{ p.cantidad < 1 ? "SIN STOCK" : "Añadir al carrito"}}
+                  </button>
                   </div>
                 </div>
   
@@ -118,31 +123,31 @@
               <li>
                 <div>
                   <h3>02</h3>
-                  <span>Days</span>
+                  <span>Dias</span>
                 </div>
               </li>
               <li>
                 <div>
                   <h3>10</h3>
-                  <span>Hours</span>
+                  <span>Horas</span>
                 </div>
               </li>
               <li>
                 <div>
                   <h3>34</h3>
-                  <span>Mins</span>
+                  <span>Min</span>
                 </div>
               </li>
               <li>
                 <div>
                   <h3>60</h3>
-                  <span>Secs</span>
+                  <span>Seg</span>
                 </div>
               </li>
             </ul>
-            <h2 class="text-uppercase">hot deal this week</h2>
-            <p>New Collection Up to 50% OFF</p>
-            <a class="primary-btn cta-btn" href="#">Shop now</a>
+            <h2 class="text-uppercase">Descuentos esta semana</h2>
+            <p>Nueva Colleccion 50% de descuento</p>
+            <a class="primary-btn cta-btn" href="#">Compra ahora</a>
           </div>
         </div>
       </div>
@@ -161,10 +166,10 @@
       <div class="row">
         <div class="col-md-12">
           <div class="newsletter">
-            <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+            <p>Subcribete para recibir <strong>PROMOCIONES</strong></p>
             <form>
-              <input class="input" type="email" placeholder="Enter Your Email">
-              <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+              <input class="input" type="email" placeholder="Escribe tu Email">
+              <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribir</button>
             </form>
             <ul class="newsletter-follow">
               <li>
