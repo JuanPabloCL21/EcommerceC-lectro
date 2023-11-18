@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   
   {
-    path: 'Gracias', component:ThankyouComponent
+    path: 'gracias', component:ThankyouComponent
   }
 ];
 

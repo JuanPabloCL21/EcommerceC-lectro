@@ -22,10 +22,5 @@ app.listen(6069, function(){
     console.log("Aplication started and listenig on port 6069");
 });
 
-/*{
-    origin: "*",
-    methods: ["GET", "POST" , "OPTIONS", "PUT" , "PATCH" , "DELETE"]
-    
-    
-}*/
+
 

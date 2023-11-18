@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 import { Producto, serverResponse } from 'src/app/models/productos.model';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit{
   
   productos: Producto[] = [];
 
-  constructor(private productServices: ProductService, private router: Router){
+  constructor(private productServices: ProductService, private cartService: CartService, private router: Router){
 
   }
 
@@ -36,6 +37,10 @@ export class HomeComponent implements OnInit{
 
   selectProduct(id: Number) {
     this.router.navigate(['/producto', id]).then;
+  }
+
+  AddToCart(id:number){
+    this.cartService.AddProductToCart(id);
   }
 
 }
