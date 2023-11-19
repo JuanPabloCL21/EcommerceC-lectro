@@ -66,26 +66,26 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style="cursor: pointer;">
                   <i class="fa fa-shopping-cart"></i>
                   <span>Carrito</span>
-                  <div class="qty">0</div>
+                  <div class="qty">{{cartData.data[0].nunInCart != 0 ? cartData.data.length : 0 }}</div>
                 </a>
                 <div class="cart-dropdown" >
-                  <div class="cart-list">
-                    <div class="product-widget">
+                  <div class="cart-list"  *ngIf="cartData.data[0].nunInCart !== 0" >
+                    <div class="product-widget" *ngFor="let c of cartData.data; let i=index">
                       <div class="product-img">
-                        <img src="assets/img/product01.png" alt="">
+                        <img src="{{c.producto?.imagen}}" alt="" width="20px">
                       </div>
                       <div class="product-body">
-                        <h3 class="product-name"><a href="#">Nombre del producto</a></h3>
-                        <h4 class="product-price"><span class="qty">1x</span>0</h4>
+                        <h3 class="product-name"><a href="#">{{c.producto?.nombre}}</a></h3>
+                        <h4 class="product-price"><span class="qty">{{c.nunInCart}} x</span>{{c.producto?.precio | currency:'MXN'}}</h4>
                       </div>
-                      <button class="delete"><i class="fa fa-close"></i></button>
+                      <button class="delete" (click)="cartService.DeleteProductFromCart(i)"><i class="fa fa-close"></i></button>
                     </div>
   
   
                   </div>
                   <div class="cart-summary">
-                    <small>3 productos seleccionados</small>
-                    <h5>SUBTOTAL: {{0 | currency: 'MXN'}}</h5>
+                    <small>{{cartData.data[0].nunInCart !== 0 ? cartData.data.length : 0}} Articulo(s) seleccionados</small>
+                    <h5>Total : {{cartTotal | currency: 'MXN'}}</h5>
                   </div>
                   <div class="cart-btns">
                     <a routerLink="/carrito">Ver carrito</a>
@@ -123,7 +123,7 @@
       <div id="responsive-nav">
         <!-- NAV -->
         <ul class="main-nav nav py-3">
-          <li class="active"><a routerLink="/">Home</a></li>
+          <li class="active"><a routerLink="/">Inicio</a></li>
           <li><a >Categorias</a></li>
           <li><a href="#">Juegos</a></li>
           <li><a href="#">Contactanos</a></li>
