@@ -1,167 +1,167 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {database} = require('../config/helpers');
+const { database } = require("../config/helpers");
+const crypto = require("crypto");
+const bodyParser = require("body-parser");
 
-/* Obtener todas las ordenes */
-
-
-
-router.get('/', (req, res)=>{
-
-database.table('detalles_orden as od')
-.join([
-  
-  {
-    table: 'ordenes as o',
-    on: 'o.id = od.orden_id'
-  },
-
-  {
-    table:'productos as p',
-    on: 'p.id = od.productos_id'
-   
-  },
-
-  {
-    table: 'usuarios as u',
-    on: 'u.id = o.user_id'
-  }
-])
-
-.withFields(['o.id', 'p.titulo as nombre', 'p.descripcion', 'p.precio', 'u.usuario'])
-.sort({id: 1})
-.getAll()
-.then(ordenes => {
-
-  if(ordenes.length > 0){
-
-     res.status(200).json(ordenes);
-
-  } else {
-    res.json({message: 'No se encontraron ordenes'});
-  }
-
-}).catch(err => console.log(err));
-
+// GET ALL ordenes
+router.get("/", (req, res) => {
+  database
+    .table("detalles_orden as od")
+    .join([
+      {
+        table: "ordenes as o",
+        on: "o.id = od.orden_id",
+      },
+      {
+        table: "productos as p",
+        on: "p.id = od.productos_id",
+      },
+      {
+        table: "usuarios as u",
+        on: "u.id = o.user_id",
+      },
+    ])
+    .withFields([
+      "o.id",
+      "p.titulo as nombre",
+      "p.descripcion",
+      "p.precio",
+      "u.usuario",
+    ])
+    .getAll()
+    .then((ordenes) => {
+      if (ordenes.length > 0) {
+        res.json(ordenes);
+      } else {
+        res.json({ message: "No se encontraron ordenes" });
+      }
+    })
+    .catch((err) => res.json(err));
 });
 
-/* Obtener todas las ordenes con ID */ 
-router.get('/:id', (req, res)=>{
+// Get Single Order
+router.get("/:id", async (req, res) => {
+  let orden_id = req.params.id;
+  console.log("\n");
+  console.log(orden_id);
 
-  const ordenId = req.params.id;
-
-  database.table('detalles_orden as od')
-.join([
-  
-  {
-    table: 'ordenes as o',
-    on: 'o.id = od.orden_id'
-  },
-
-  {
-    table:'productos as p',
-    on: 'p.id = od.productos_id'
-   
-  },
-
-  {
-    table: 'usuarios as u',
-    on: 'u.id = o.user_id'
-  }
-])
-
-.withFields(['o.id', 'p.titulo as nombre', 'p.descripcion', 'p.precio', 'u.usuario'])
-.filter({'o.id': ordenId})
-.getAll()
-.then(ordenes => {
-
-  if(ordenes.length > 0){
-
-     res.status(200).json(ordenes);
-
-  } else {
-    res.json({message: `No se encontraron ordenes con el id ${ordenId} `});
-  }
-
-}).catch(err => console.log(err));
-
+  database
+    .table("detalles_orden as od")
+    .join([
+      {
+        table: "ordenes as o",
+        on: "o.id = od.orden_id",
+      },
+      {
+        table: "productos as p",
+        on: "p.id = od.productos_id",
+      },
+      {
+        table: "usuarios as u",
+        on: "u.id = o.user_id",
+      },
+    ])
+    .withFields([
+      "o.id",
+      "p.titulo as nombre",
+      "p.descripcion",
+      "p.precio",
+      "p.imagen",
+      "od.cantidad as cantidadOrdenanda",
+    ])
+    .filter({ "o.id": orden_id })
+    .getAll()
+    .then((ordenes) => {
+      console.log(ordenes);
+      if (ordenes.length > 0) {
+        res.json(ordenes);
+      } else {
+        res.json({ message: "No ordenes found" });
+      }
+    })
+    .catch((err) => res.json(err));
 });
+// Place New Order
+router.post("/new", bodyParser.json(), (req, res) => {
+  console.log(req.body);
+  const { user_id, productos } = req.body;
+  console.log(user_id);
 
-/* Crear una nueva orden */
-router.post('/new', (req, res) => {
-
-  let {userid, productos} = req.body;
-
-  if (userid != null && userid > 0 && !isNaN(userid))
-  {
-    database.table('ordenes')
-       .insert({
-           user_id: userid
-       }).then(newOrderId => {
-
-        if(newOrderId > 0){
+  if (user_id != null && user_id > 0) {
+    database
+      .table("ordenes")
+      .insert({
+        user_id: user_id,
+      })
+      .then((newOrderId) => {
+        console.log(newOrderId);
+        if (newOrderId.insertId > 0) {
           productos.forEach(async (p) => {
-            
-            let data = await database.table('productos').filter({id: p.id}).withFields([quantity]).get();
+            const data = await database
+              .table("productos")
+              .filter({ id: p.id })
+              .withFields(["cantidad"])
+              .get();
 
-            let inCart = p.incart;
+            const inCart = parseInt(p.incart);
 
-            //Reducir el numero de piezas de la orden de la columna cantidad en la base de datos
+            // Deduct the number of pieces ordered from the quantity in database
 
-            if (data.quantity > 0){
-              data.quantity = data.quantity - inCart;
+            if (data.cantidad > 0) {
+              data.cantidad = data.cantidad - inCart;
 
-              if(data.quantity < 0 ){
-                data.quantity = 0;
+              if (data.cantidad < 0) {
+                data.cantidad = 0;
               }
-
             } else {
-              data.quantity = 0;
+              data.cantidad = 0;
             }
 
-            //insertar detalles de ordenes con respecto al recien generado ID de orden
-
-            database.table('detalles_orden')
-               .insert({
-                order_id: newOrderId,
-                product_id : p.id,
-                quantity: inCart
-               }).then(newId => {
-
-                database.table('productos')
-                  .filter({id: p.id})
+            // Insert order details w.r.t the newly created order Id
+            database
+              .table("detalles_orden")
+              .insert({
+                orden_id: newOrderId.insertId,
+                productos_id: p.id,
+                cantidad: inCart,
+              })
+              .then((newId) => {
+                database
+                  .table("productos")
+                  .filter({ id: p.id })
                   .update({
-                    quantity: data.quantity
-                  }).then(successNum =>{}).catch(err => console.log(err));
-
-               }).catch(err => console.log(err))
-
+                    cantidad: data.cantidad,
+                  })
+                  .then((successNum) => {})
+                  .catch((err) => console.log(err));
+              })
+              .catch((err) => console.log(err));
           });
         } else {
-          res.json({message: `Nueva orden fallo mientras se agregaban los detalles al pedido`, success: false});
+          res.json({
+            message: "Fallo  en la orden al agregar los detalles",
+            success: false,
+          });
         }
-
         res.json({
-          message: `La orden se realizo satisfactoriamente con el ID ${newOrderId} `,
+          message: `La orden se realizo satisfactoriamente con el ID ${newOrderId.insertId}`,
           success: true,
-          order_id: newOrderId,
-          productos: productos
-        })
-
-
-       }).catch(err => console.log(err))
+          orden_id: newOrderId.insertId,
+          productos: productos,
+        });
+      })
+      .catch((err) => res.json(err));
+  } else {
+    res.json({ message: "Nueva Orden Fallo", success: false });
   }
-   else {
-    res.json({message: 'Nueva orden fallo', success: false});
-   }
-
 });
 
-/*Camino a Pago, (no necesaria de momento hasta estar terminado el proyecto)*/ 
-router.post('/pago', (req, res) => {
+// Payment Gateway
+router.post("/pago", (req, res) => {
   setTimeout(() => {
-    res.status(200).json({success:true});
-  }, 3000)
+    res.status(200).json({ success: true });
+  }, 3000);
 });
 
 module.exports = router;

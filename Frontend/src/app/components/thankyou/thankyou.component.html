@@ -1,1 +1,43 @@
-<p>thankyou works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron text-center">
+          <h1 class="display-3">Thank You!</h1>
+          <p class="lead"><strong>Please check your email</strong> for order confirmation.</p>
+          <hr>
+          <p>
+  
+          <p>Orden ID : <strong>{{orden_id}}</strong></p>
+        </div>
+  
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let p of productos">
+            <td>
+              <img [src]="p.imagen" alt="{{p.nombre}}" class="img-thumbnail" width="100px">
+            </td>
+            <td>{{p.nombre}}</td>
+            <td>{{p.precio | currency:'MXN'}}</td>
+            <td>{{p.cantidadOrdenanda}}</td>
+          </tr>
+  
+          <tr class="border-0">
+            <td style="border: none;"></td>
+            <td></td>
+            <td>TOTAL</td>
+            <td>{{cartTotal | currency:'MXN'}}</td>
+  
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

@@ -2,6 +2,8 @@ var express = require("express");
 var app = express();
 const cors = require('cors');
 
+
+
 app.use(cors({
     origin: 'http://localhost:4200', // Reemplaza con la URL de tu aplicación Angular
     optionsSuccessStatus: 200,
@@ -14,6 +16,7 @@ const orderRoute = require('./routes/order');
 
 app.use('/api/productos', productsRoute);
 app.use('/api/ordenes', orderRoute);
+
 
 
 

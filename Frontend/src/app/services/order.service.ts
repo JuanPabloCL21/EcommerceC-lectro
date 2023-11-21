@@ -12,16 +12,18 @@ export class OrderService {
   constructor(private http: HttpClient) {
    }
 
-   getSingleOrder(orderId: number){
-    return this.http.get<ProductResponseModel[]>(this.SERVER_URL + '/ordenes' + orderId).toPromise();
+   getSingleOrder(orden_id: number){
+    
+    return this.http.get<ProductResponseModel[]>(this.SERVER_URL+ 'ordenes/'+ orden_id).toPromise();
    }
 }
 
 interface ProductResponseModel{
   id: number,
-  titulo: string,
+  nombre: string,
   descripcion: string,
   precio: number,
-  cantidadOrdenada: number,
-  imagen: string;
+  imagen: string,
+  cantidadOrdenanda: number
+  
 }
