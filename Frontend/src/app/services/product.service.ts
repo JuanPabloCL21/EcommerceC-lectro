@@ -30,7 +30,7 @@ export class ProductService {
     return this.http.get<Producto>(this.SERVER_URL+ 'productos/'+id);
   }
 
-  getProductsFromCategory(catName: String) : Observable<Producto[]>{
-    return this.http.get<Producto[]>(this.SERVER_URL + '/productos/categoria/'+ catName);
+  getProductsFromCategory(catName: string) : Observable<serverResponse>{
+    return this.http.get<serverResponse>(this.SERVER_URL + 'productos/categoria/'+ catName);
   }
 }

@@ -43,6 +43,10 @@ export class HomeComponent implements OnInit{
     this.cartService.AddProductToCart(id);
   }
 
+  irACategoria(categoria: string): void {
+    this.router.navigate(['/categoria', categoria]).then();
+  }
+
 }
 
 

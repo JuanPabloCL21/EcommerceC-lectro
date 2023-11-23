@@ -165,17 +165,17 @@ export class CartService {
     });
   }
 
-  UpdateCartData(index: number, increase: Boolean) {
+  UpdateCartData(index: any, increase: Boolean) {
+    console.log(index);
+    console.log(increase);
     let data = this.cartDataServer.data[index];
     if (increase) {
       // @ts-ignore
-      data.nunInCart < data.producto?.cantidad
-        ? data.nunInCart++
-        : data.producto?.cantidad;
+      data.nunInCart < data.producto.cantidad ? data.nunInCart++ : data.producto.cantidad;
       this.cartDataClient.prodData[index].incart = data.nunInCart;
       this.CalculateTotal();
       this.cartDataClient.total = this.cartDataServer.total;
-      this.cartData$.next({ ...this.cartDataServer });
+      this.cartData$.next({...this.cartDataServer});
       localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
     } else {
       // @ts-ignore
@@ -184,16 +184,18 @@ export class CartService {
       // @ts-ignore
       if (data.nunInCart < 1) {
         this.DeleteProductFromCart(index);
-        this.cartData$.next({ ...this.cartDataServer });
+        this.cartData$.next({...this.cartDataServer});
       } else {
         // @ts-ignore
-        this.cartDataObs$.next({ ...this.cartDataServer });
+        this.cartData$.next({...this.cartDataServer});
         this.cartDataClient.prodData[index].incart = data.nunInCart;
         this.CalculateTotal();
         this.cartDataClient.total = this.cartDataServer.total;
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
       }
+
     }
+
   }
 
   DeleteProductFromCart(index: number) {
@@ -225,7 +227,7 @@ export class CartService {
         this.cartData$.next({ ...this.cartDataServer });
       }
     } else {
-      return;
+      
     }
   }
 
@@ -244,53 +246,56 @@ export class CartService {
   }
 
   CheckoutFromCart(userId: number) {
+    this.http
+      .post(`${this.SERVER_URL}ordenes/pago`, null)
+      .subscribe((res: any) => {
+        if (res.success) {
+          this.resetServerData();
 
-    this.http.post(`${this.SERVER_URL}ordenes/pago`, null).subscribe((res: any) => {
-      
-
-      if (res.success) {
-
-
-        this.resetServerData();
-        
-        this.http.post(`${this.SERVER_URL}ordenes/new`, {
-          user_id: userId,
-          productos: this.cartDataClient.prodData
-        }).subscribe((data: any) => {
-
-          
-          
-          this.orderService.getSingleOrder(data.orden_id).then(prods => {
-            if (data.success) {
-              const navigationExtras: NavigationExtras = {
-                state: {
-                  message: data.message,
-                  productos: prods,
-                  orden_id: data.orden_id,
-                  total: this.cartDataClient.total
+          this.http
+            .post(`${this.SERVER_URL}ordenes/new`, {
+              user_id: userId,
+              productos: this.cartDataClient.prodData,
+            })
+            .subscribe((data: any) => {
+              this.orderService.getSingleOrder(data.orden_id).then((prods) => {
+                if (data.success) {
+                  const navigationExtras: NavigationExtras = {
+                    state: {
+                      message: data.message,
+                      productos: prods,
+                      orden_id: data.orden_id,
+                      total: this.cartDataClient.total,
+                    },
+                  };
+                  this.spinner.hide().then();
+                  this.router
+                    .navigate(['/gracias'], navigationExtras)
+                    .then((p) => {
+                      this.cartDataClient = {
+                        prodData: [{ incart: 0, id: 0 }],
+                        total: 0,
+                      };
+                      this.cartTotal$.next(0);
+                      localStorage.setItem(
+                        'cart',
+                        JSON.stringify(this.cartDataClient)
+                      );
+                    });
                 }
-              };
-              this.spinner.hide().then();
-              this.router.navigate(['/gracias'], navigationExtras).then(p => {
-                this.cartDataClient = {prodData: [{incart: 0, id: 0}], total: 0};
-                this.cartTotal$.next(0);
-                localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
               });
-            }
+            });
+        } else {
+          this.spinner.hide().then();
+          this.router.navigateByUrl('/pago').then();
+          this.toast.error(`Sorry, failed to book the order`, 'Order Status', {
+            timeOut: 1500,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            positionClass: 'toast-top-right',
           });
-
-        })
-      } else {
-        this.spinner.hide().then();
-        this.router.navigateByUrl('/pago').then();
-        this.toast.error(`Sorry, failed to book the order`, "Order Status", {
-          timeOut: 1500,
-          progressBar: true,
-          progressAnimation: 'increasing',
-          positionClass: 'toast-top-right'
-        })
-      }
-    })
+        }
+      });
   }
 
   private resetServerData() {
@@ -322,8 +327,10 @@ interface OrderConfirmationResponse {
   order_id: Number;
   success: Boolean;
   message: String;
-  products: [{
-    id: String,
-    numInCart: String
-  }]
+  products: [
+    {
+      id: String;
+      nunInCart: String;
+    }
+  ];
 }

@@ -1,138 +1,182 @@
 <!-- HEADER -->
 <header>
-    <!-- TOP HEADER -->
-    <div id="top-header">
-      <div class="container">
-        <ul class="header-links pull-left">
-          <li><a href="tel:+523330743679"><i class="fa fa-phone"></i> +52 333-0743-679</a></li>
-          <li><a href="#"><i class="fa fa-envelope-o"></i> {{email}}</a></li>
-          <li><a href="https://maps.app.goo.gl/hVp6vGx2gGHYoW7Z8"><i class="fa fa-map-marker"></i> Mercado San Juan de dios Local: 187</a></li>
-        </ul>
-        <ul class="header-links pull-right">
-          <li><a href="#"><i class="fa fa-dollar"></i> MXN</a></li>
-          <li><a href="#"><i class="fa fa-user-o"></i> Mi cuenta</a></li>
-        </ul>
-      </div>
+  <!-- TOP HEADER -->
+  <div id="top-header">
+    <div class="container">
+      <ul class="header-links pull-left">
+        <li>
+          <a href="tel:+523330743679"
+            ><i class="fa fa-phone"></i> +52 333-0743-679</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-envelope-o"></i> {{ email }}</a>
+        </li>
+        <li>
+          <a href="https://maps.app.goo.gl/hVp6vGx2gGHYoW7Z8"
+            ><i class="fa fa-map-marker"></i> Mercado San Juan de dios Local:
+            187</a
+          >
+        </li>
+      </ul>
+      <ul class="header-links pull-right">
+        <li>
+          <a href="#"><i class="fa fa-dollar"></i> MXN</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-user-o"></i> Mi cuenta</a>
+        </li>
+      </ul>
     </div>
-    <!-- /TOP HEADER -->
-  
-    <!-- MAIN HEADER -->
-    <div id="header">
-      <!-- container -->
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <!-- LOGO -->
-          <div class="col-md-3">
-            <div class="header-logo">
-              <a routerLink="/" class="logo">
-                <img src="../../../assets/img/logo.png" alt="">
-              </a>
-            </div>
-          </div>
-          <!-- /LOGO -->
-  
-          <!-- SEARCH BAR -->
-          <div class="col-md-6">
-            <div class="header-search">
-              <form>
-                <select class="input-select">
-                  <option value="0">Categorias</option>
-                  <option value="1">Categoria 01</option>
-                  <option value="2">Categoria 02</option>
-                </select>
-                <input class="input" placeholder="Busca Aqui">
-                <button class="search-btn">Buscar</button>
-              </form>
-            </div>
-          </div>
-          <!-- /SEARCH BAR -->
-  
-          <!-- ACCOUNT -->
-          <div class="col-md-3 clearfix">
-            <div class="header-ctn">
-              <!-- Wishlist -->
-              <div>
-                <a href="#">
-                  <i class="fa fa-heart-o"></i>
-                  <span>Favoritos</span>
-                  <div class="qty">0</div>
-                </a>
-              </div>
-              <!-- /Wishlist -->
-  
-              <!-- Cart -->
-              <div class="dropdown" >
-                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style="cursor: pointer;">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span>Carrito</span>
-                  <div class="qty">{{cartData.data[0].nunInCart != 0 ? cartData.data.length : 0 }}</div>
-                </a>
-                <div class="cart-dropdown" >
-                  <div class="cart-list"  *ngIf="cartData.data[0].nunInCart !== 0" >
-                    <div class="product-widget" *ngFor="let c of cartData.data; let i=index">
-                      <div class="product-img">
-                        <img src="{{c.producto?.imagen}}" alt="" width="20px">
-                      </div>
-                      <div class="product-body">
-                        <h3 class="product-name"><a href="#">{{c.producto?.nombre}}</a></h3>
-                        <h4 class="product-price"><span class="qty">{{c.nunInCart}} x</span>{{c.producto?.precio | currency:'MXN'}}</h4>
-                      </div>
-                      <button class="delete" (click)="cartService.DeleteProductFromCart(i)"><i class="fa fa-close"></i></button>
-                    </div>
-  
-  
-                  </div>
-                  <div class="cart-summary">
-                    <small>{{cartData.data[0].nunInCart !== 0 ? cartData.data.length : 0}} Articulo(s) seleccionados</small>
-                    <h5>Total : {{cartTotal | currency: 'MXN'}}</h5>
-                  </div>
-                  <div class="cart-btns">
-                    <a routerLink="/carrito">Ver carrito</a>
-                    <a routerLink="/pago">Pagar <i class="fa fa-arrow-circle-right"></i></a>
-                  </div>
-                </div>
-              </div>
-              <!-- /Cart -->
-  
-              <!-- Menu Toogle -->
-              <div class="menu-toggle">
-                <a href="#">
-                  <i class="fa fa-bars"></i>
-                  <span>Menu</span>
-                </a>
-              </div>
-              <!-- /Menu Toogle -->
-            </div>
-          </div>
-          <!-- /ACCOUNT -->
-        </div>
-        <!-- row -->
-      </div>
-      <!-- container -->
-    </div>
-    <!-- /MAIN HEADER -->
-  </header>
-  <!-- /HEADER -->
-  
-  <!-- NAVIGATION -->
-  <nav id="navigation">
+  </div>
+  <!-- /TOP HEADER -->
+
+  <!-- MAIN HEADER -->
+  <div id="header">
     <!-- container -->
     <div class="container">
-      <!-- responsive-nav -->
-      <div id="responsive-nav">
-        <!-- NAV -->
-        <ul class="main-nav nav py-3">
-          <li class="active"><a routerLink="/">Inicio</a></li>
-          <li><a >Categorias</a></li>
-          <li><a href="#">Juegos</a></li>
-          <li><a href="#">Contactanos</a></li>
-  
-        </ul>
-        <!-- /NAV -->
+      <!-- row -->
+      <div class="row">
+        <!-- LOGO -->
+        <div class="col-md-3">
+          <div class="header-logo">
+            <a routerLink="/" class="logo">
+              <img src="../../../assets/img/logo.png" alt="" />
+            </a>
+          </div>
+        </div>
+        <!-- /LOGO -->
+
+        <!-- SEARCH BAR -->
+        <div class="col-md-6">
+          <div class="header-search">
+            <form>
+              <select class="input-select">
+                <option value="0">Categorias</option>
+                <option value="1">Categoria 01</option>
+                <option value="2">Categoria 02</option>
+              </select>
+              <input class="input" placeholder="Busca Aqui" />
+              <button class="search-btn">Buscar</button>
+            </form>
+          </div>
+        </div>
+        <!-- /SEARCH BAR -->
+
+        <!-- ACCOUNT -->
+        <div class="col-md-3 clearfix">
+          <div class="header-ctn">
+            <!-- Wishlist -->
+            <div>
+              <a href="#">
+                <i class="fa fa-heart-o"></i>
+                <span>Favoritos</span>
+                <div class="qty">0</div>
+              </a>
+            </div>
+            <!-- /Wishlist -->
+
+            <!-- Cart -->
+            <div class="dropdown">
+              <a
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="true"
+                style="cursor: pointer"
+              >
+                <i class="fa fa-shopping-cart"></i>
+                <span>Carrito</span>
+                <div class="qty">
+                  {{
+                    cartData.data[0].nunInCart != 0 ? cartData.data.length : 0
+                  }}
+                </div>
+              </a>
+              <div class="cart-dropdown">
+                <div class="cart-list" *ngIf="cartData.data[0].nunInCart !== 0">
+                  <div
+                    class="product-widget"
+                    *ngFor="let c of cartData.data; let i = index"
+                  >
+                    <div class="product-img">
+                      <img src="{{ c.producto?.imagen }}" alt="" width="20px" />
+                    </div>
+                    <div class="product-body">
+                      <h3 class="product-name">
+                        <a href="#">{{ c.producto?.nombre }}</a>
+                      </h3>
+                      <h4 class="product-price">
+                        <span class="qty">{{ c.nunInCart }} x</span
+                        >{{ c.producto?.precio | currency : "MXN" }}
+                      </h4>
+                    </div>
+                    <button
+                      class="delete"
+                      (click)="cartService.DeleteProductFromCart(i)"
+                    >
+                      <i class="fa fa-close"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="cart-summary">
+                  <small
+                    >{{
+                      cartData.data[0].nunInCart !== 0
+                        ? cartData.data.length
+                        : 0
+                    }}
+                    Articulo(s) seleccionados</small
+                  >
+                  <h5>Total : {{ cartTotal | currency : "MXN" }}</h5>
+                </div>
+                <div class="cart-btns">
+                  <a routerLink="/carrito">Ver carrito</a>
+                  <a routerLink="/pago"
+                    >Pagar <i class="fa fa-arrow-circle-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <!-- /Cart -->
+
+            <!-- Menu Toogle -->
+            <div class="menu-toggle">
+              <a href="#">
+                <i class="fa fa-bars"></i>
+                <span>Menu</span>
+              </a>
+            </div>
+            <!-- /Menu Toogle -->
+          </div>
+        </div>
+        <!-- /ACCOUNT -->
       </div>
-      <!-- /responsive-nav -->
+      <!-- row -->
     </div>
-    <!-- /container -->
-  </nav>
-  <!-- /NAVIGATION -->
+    <!-- container -->
+  </div>
+  <!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+  <!-- container -->
+  <div class="container">
+    <!-- responsive-nav -->
+    <div id="responsive-nav">
+      <!-- NAV -->
+      <ul class="main-nav nav py-3">
+        <li class="active"><a routerLink="/">Inicio</a></li>
+        <li ><a (click)="irACategoria('bocinas')">Bocinas</a></li>
+        <li ><a (click)="irACategoria('cables')">Cables</a></li>
+        <li ><a (click)="irACategoria('almacenamiento')">Almacenamiento</a></li>
+        <li ><a (click)="irACategoria('audifonos')">Audifonos</a></li>
+      </ul>
+      <!-- /NAV -->
+    </div>
+    <!-- /responsive-nav -->
+  </div>
+  <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
