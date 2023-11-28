@@ -11,7 +11,7 @@
               <img src="./../../../assets/img/shop01.png" alt="" >
             </div>
             <div class="shop-body">
-              <h4 style="color: white;">Almecenamiento</h4>
+              <h4 style="color: white;">Almacenamiento</h4>
               <a class="cta-btn" >Comprar Ahora <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
@@ -88,6 +88,7 @@
                   <div class="col-md-6 ">
                     <button class="btn btn-outline-primary btn-sm btn-block"
                           [class.disabled]="p.cantidad < 1"
+                          [disabled]="p.cantidad < 1"
                           [class.btn-outline-danger]="p.cantidad < 1"
                           (click)="AddToCart(p.id)"
                           >
