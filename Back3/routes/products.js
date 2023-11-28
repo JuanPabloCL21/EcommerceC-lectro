@@ -70,6 +70,7 @@ router.get('/:prodId', (req, res) => {
         'p.titulo as nombre',
         'p.precio',
         'p.cantidad',
+        'p.descripcion',
         'p.imagen',
         'p.imagenes',
         'p.id'
@@ -117,7 +118,8 @@ router.get('/categoria/:catName', (req,res)=>{
         'p.precio',
         'p.cantidad',
         'p.imagen',
-        'p.id'
+        'p.id',
+        'p.descripcion'
       ])
       .slice(startValue, endValue)
       .sort({id: .1})

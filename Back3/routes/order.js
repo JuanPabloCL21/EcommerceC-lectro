@@ -43,8 +43,7 @@ router.get("/", (req, res) => {
 // Get Single Order
 router.get("/:id", async (req, res) => {
   let orden_id = req.params.id;
-  console.log("\n");
-  console.log(orden_id);
+  
 
   database
     .table("detalles_orden as od")
@@ -73,7 +72,7 @@ router.get("/:id", async (req, res) => {
     .filter({ "o.id": orden_id })
     .getAll()
     .then((ordenes) => {
-      console.log(ordenes);
+      
       if (ordenes.length > 0) {
         res.json(ordenes);
       } else {
@@ -84,9 +83,9 @@ router.get("/:id", async (req, res) => {
 });
 // Place New Order
 router.post("/new", bodyParser.json(), (req, res) => {
-  console.log(req.body);
+  
   const { user_id, productos } = req.body;
-  console.log(user_id);
+
 
   if (user_id != null && user_id > 0) {
     database
@@ -95,7 +94,7 @@ router.post("/new", bodyParser.json(), (req, res) => {
         user_id: user_id,
       })
       .then((newOrderId) => {
-        console.log(newOrderId);
+   
         if (newOrderId.insertId > 0) {
           productos.forEach(async (p) => {
             const data = await database

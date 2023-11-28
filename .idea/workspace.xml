@@ -5,40 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91501e44-dcf7-4d73-95bc-80b9022de660" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back3/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back3/config/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/config/helpers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back3/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/HISTORY.md" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/HISTORY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/SECURITY.md" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/SECURITY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/json.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/json.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/raw.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/raw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/text.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/text.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/urlencoded.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/lib/types/urlencoded.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/body-parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/raw-body/HISTORY.md" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/raw-body/HISTORY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/raw-body/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/raw-body/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/raw-body/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/raw-body/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/raw-body/SECURITY.md" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/raw-body/SECURITY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/raw-body/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/raw-body/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/raw-body/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/raw-body/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/node_modules/raw-body/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/node_modules/raw-body/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back3/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back3/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back3/routes/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/routes/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back3/routes/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back3/routes/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/components/cart/cart.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/components/cart/cart.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/components/cart/cart.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/components/cart/cart.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/components/cart/cart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/components/cart/cart.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/components/checkout/checkout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/components/checkout/checkout.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/components/checkout/checkout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/components/checkout/checkout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/app/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/components/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/models/cart.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/models/cart.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/services/cart.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/services/cart.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/app/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/services/order.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/app/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/components/header/header.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +73,7 @@
       <workItem from="1700261400308" duration="631000" />
       <workItem from="1700262607817" duration="2501000" />
       <workItem from="1700455678401" duration="721000" />
+      <workItem from="1700855252855" duration="1557000" />
     </task>
     <servers />
   </component>
