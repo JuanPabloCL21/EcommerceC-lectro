@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit{
   }
 
   cargarProductos(): void {
-    this.productServices.getAllProducts(8).subscribe((prods: serverResponse) => {
+    this.productServices.getAllProducts(9).subscribe((prods: serverResponse) => {
       this.productos = prods.productos;
       console.log(this.productos);
     })

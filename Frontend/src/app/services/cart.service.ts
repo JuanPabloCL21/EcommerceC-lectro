@@ -199,7 +199,7 @@ export class CartService {
   }
 
   DeleteProductFromCart(index: number) {
-    if (window.confirm('¿Estas Suguro que quieres eliminar el producto?')) {
+    if (window.confirm('¿Estas seguro que quieres eliminar el producto?')) {
       this.cartDataServer.data.splice(index, 1);
       this.cartDataClient.prodData.splice(index, 1);
       this.CalculateTotal();
