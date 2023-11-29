@@ -8,7 +8,6 @@
           <ul class="breadcrumb-tree">
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Categorias</a></li>
-            <li><a href="#">Accesorios</a></li>
             <li><a href="#">{{producto.categoria}}</a></li>
             <li class="active">{{producto.nombre}}</li>
           </ul>
@@ -69,9 +68,10 @@
            
             <div>
               <h3 class="product-price">{{producto?.precio | currency:'MXN'}} </h3>
-              <span class="product-available">disponible</span>
+              <span class="product-available" *ngIf="producto.cantidad >= 1">disponible</span>
             </div>
             <p>{{producto.descripcion}}</p>
+            <p>{{producto.desc_corta}}</p>
   
   
             <div class="add-to-cart">

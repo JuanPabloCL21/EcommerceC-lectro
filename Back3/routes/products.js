@@ -73,7 +73,8 @@ router.get('/:prodId', (req, res) => {
         'p.descripcion',
         'p.imagen',
         'p.imagenes',
-        'p.id'
+        'p.id',
+        'p.desc_corta'
       ])
       .filter({'p.id' : productId})
       .get()

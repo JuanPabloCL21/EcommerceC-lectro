@@ -18,11 +18,11 @@
           <div class="row">
             <div class="col-md-4 col-sm-6" *ngFor="let p of productosDeCategoria">
               <div class="card my-2">
-                <img [src]="p.imagen" alt="{{p.nombre}}" width="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
+                <img [src]="p.imagen" alt="{{p.nombre}}" width="200px" height="350px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
                 
                 <div class="card-header">
                   <div class="card-title">
-                    <p>{{p.nombre | titlecase}} </p>
+                    <p>{{p.nombre.substr(0,35)| titlecase}} </p>
                   </div>
                 </div>
                 <div class="card-body">
